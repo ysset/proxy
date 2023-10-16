@@ -1,3 +1,4 @@
+// @ts-ignore
 import assert from 'assert';
 import * as net from 'net';
 import * as url from 'url';
@@ -106,6 +107,7 @@ async function onrequest(
 	let hasVia = false;
 	const via = '1.1 ' + hostname + ' (proxy/' + pkg.version + ')';
 
+	// @ts-ignore
 	for (const header of eachHeader(req)) {
 		debug.request('Request Header: %o', header);
 		const key = header[0];
@@ -207,6 +209,7 @@ async function onrequest(
 		gotResponse = true;
 
 		const headers: http.OutgoingHttpHeaders = {};
+		// @ts-ignore
 		for (const [key, value] of eachHeader(proxyRes)) {
 			debug.proxyResponse('Proxy Response Header: "%s: %s"', key, value);
 			if (isHopByHop.test(key)) {
